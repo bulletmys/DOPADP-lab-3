@@ -1,7 +1,5 @@
 public class Spark {
-    public static int main() {
-
-        return 1;
+    public static void main(String[] args) {
+        
     }
-
 }
