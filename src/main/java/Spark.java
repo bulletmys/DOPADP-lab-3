@@ -9,5 +9,6 @@ public class Spark {
         JavaRDD<String> flights = sc.textFile("Flights.csv");
 
         JavaRDD<String[]> flights_lines = flights.map(s -> s.replaceAll("\"", "").split(",")).filter(strings -> !strings[0].equals("Flights"));
+        System.out.println(flights_lines);
     }
 }
