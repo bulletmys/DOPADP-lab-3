@@ -8,6 +8,6 @@ public class Spark {
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> flights = sc.textFile("Flights.csv");
 
-        JavaRDD<String[]> flights_lines = flights.map()
+        JavaRDD<String[]> flights_lines = flights.map(s -> s.split(",").)
     }
 }
