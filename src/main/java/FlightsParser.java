@@ -1,9 +1,9 @@
 import org.apache.spark.api.java.JavaRDD;
 
-public class Parser {
+public class FlightsParser {
     private JavaRDD<String[]> strings;
 
-    Parser(JavaRDD<String> stringJavaRDD) {
+    FlightsParser(JavaRDD<String> stringJavaRDD) {
         stringJavaRDD.map(s -> s.replaceAll("\"", "").split(","));
     }
 
