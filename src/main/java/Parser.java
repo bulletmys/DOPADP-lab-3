@@ -1,5 +1,5 @@
 public class Parser {
-    private String[]
+    private String[] strings;
 
     Parser() {
 
