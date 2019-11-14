@@ -33,6 +33,7 @@ public class Spark {
                                 new Tuple2<String, String>(
                                         getOriginAirportID(i), getDestAirportID(i)), new FlightsInfo(i)));
 
+        data.reduceByKey()
 
     }
 }

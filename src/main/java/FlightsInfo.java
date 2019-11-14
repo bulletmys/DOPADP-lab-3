@@ -14,11 +14,7 @@ public class FlightsInfo implements Serializable {
         this.maxDelayedTime = Float.parseFloat(strings[DELAYED]);
         this.numOfDelayed = maxDelayedTime > 0.0 ? 1 : 0;
         this.numOfCanceled = Math.round(Float.parseFloat(strings[CANCELLED]));
-        this.numOfAll = numOfAll;
-    }
-
-    private int getDelay(String[] strings) {
-        if (strings[DELAYED] !)
+        this.numOfAll = 1;
     }
 
     public float getMaxDelayedTime() {
