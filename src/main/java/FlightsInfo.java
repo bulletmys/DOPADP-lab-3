@@ -13,7 +13,7 @@ public class FlightsInfo implements Serializable {
     FlightsInfo(String[] strings) {
         this.maxDelayedTime = Float.parseFloat(strings[DELAYED]);
         this.numOfDelayed = maxDelayedTime > 0.0 ? 1 : 0;
-        this.numOfCanceled = Float.floatToIntBits(Float.parseFloat(strings[CANCELLED]));
+        this.numOfCanceled = Math.round(Float.parseFloat(strings[CANCELLED]));
         this.numOfAll = numOfAll;
     }
 
