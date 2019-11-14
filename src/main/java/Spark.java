@@ -3,7 +3,6 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
-import
 
 public class Spark {
     public static void main(String[] args) {
@@ -17,7 +16,9 @@ public class Spark {
 
         JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings();
 
-        JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo.mapToPair()
+        JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo
+                .mapToPair(i ->
+                        new Tuple2<Tuple2<String, String>, FlightsInfo>())
 
 
     }
