@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 public class FlightsInfo implements Serializable {
 
-    private final int DELAYED = 
+    private final int DELAYED = 18
 
     private float maxDelayedTime;
     private int numOfDelayed;
