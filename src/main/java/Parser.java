@@ -1,5 +1,6 @@
-import scala.Serializable;
+import java.io.Serializable;
 
 public class Parser implements Serializable {
     
+
 }
