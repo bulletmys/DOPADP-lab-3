@@ -1,7 +1,13 @@
+import org.apache.spark.api.java.JavaRDD;
+
 public class Parser {
-    private String[] strings;
+    private JavaRDD<String[]> strings;
 
-    Parser() {
+    Parser(JavaRDD<String> stringJavaRDD) {
+        stringJavaRDD.map(s -> s.replaceAll("\"", "").split(","));
+    }
 
+    public JavaRDD<String[]> getStrings() {
+        return strings;
     }
 }

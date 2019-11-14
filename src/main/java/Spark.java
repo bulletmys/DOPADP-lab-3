@@ -10,7 +10,7 @@ public class Spark {
         JavaRDD<String> flightsInfo = sc.textFile("664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsNames = sc.textFile("L_AIRPORT_ID.csv");
 
-        flightsInfo
+        
 
 
     }
