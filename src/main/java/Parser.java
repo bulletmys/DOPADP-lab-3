@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+import scala.Serializable;
 
-public class Parser {
+public class Parser implements Serializable {
+    
 }

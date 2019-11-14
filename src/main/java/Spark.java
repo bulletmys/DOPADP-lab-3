@@ -7,9 +7,11 @@ public class Spark {
         SparkConf conf = new SparkConf();
         JavaSparkContext sc = new JavaSparkContext(conf);
         System.out.println("START");
-        JavaRDD<String> flights = sc.textFile("L_AIRPORT_ID.csv");
-        JavaRDD<String> flights = sc.textFile("Flights.csv");
+        JavaRDD<String> flightsInfo = sc.textFile("664600583_T_ONTIME_sample.csv");
+        JavaRDD<String> airportsNames = sc.textFile("L_AIRPORT_ID.csv");
 
-        System.out.println(flights_lines);
+        flightsInfo
+
+
     }
 }
