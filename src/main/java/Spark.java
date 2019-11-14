@@ -17,7 +17,7 @@ public class Spark {
 
         JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings();
 
-        JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo
+        JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo.red
 
 
     }
