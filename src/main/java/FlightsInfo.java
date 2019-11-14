@@ -6,8 +6,8 @@ public class FlightsInfo implements Serializable {
     private int numOfCanceled;
     private int numOfAll;
 
-    FlightsInfo(float maxDelayedTime, int numOfDelayed, int numOfCanceled, int numOfAll) {
-        this.maxDelayedTime = maxDelayedTime;
+    FlightsInfo(String[] strings) {
+        this.maxDelayedTime = strings[];
         this.numOfDelayed = numOfDelayed;
         this.numOfCanceled = numOfCanceled;
         this.numOfAll = numOfAll;
