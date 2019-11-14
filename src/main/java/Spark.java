@@ -5,6 +5,8 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
 public class Spark {
+
+    private get
     public static void main(String[] args) {
         SparkConf conf = new SparkConf();
         JavaSparkContext sc = new JavaSparkContext(conf);
@@ -18,7 +20,7 @@ public class Spark {
 
         JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo
                 .mapToPair(i ->
-                        new Tuple2<Tuple2<String, String>, FlightsInfo>())
+                        new Tuple2<Tuple2<String, String>, FlightsInfo>(new Tuple2<String, String>()))
 
 
     }
