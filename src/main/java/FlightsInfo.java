@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 public class FlightsInfo implements Serializable {
 
-    private final int DELAYED = 18
+    private final int DELAYED = 18;
 
     private float maxDelayedTime;
     private int numOfDelayed;
@@ -10,14 +10,14 @@ public class FlightsInfo implements Serializable {
     private int numOfAll;
 
     FlightsInfo(String[] strings) {
-        this.maxDelayedTime = Float.parseFloat(strings[18]);
-        this.numOfDelayed =  getDelay();
+        this.maxDelayedTime = Float.parseFloat(strings[DELAYED]);
+        this.numOfDelayed = maxDelayedTime > 0.0 ? 1 : 0;
         this.numOfCanceled = numOfCanceled;
         this.numOfAll = numOfAll;
     }
 
-    private int getDelay() {
-
+    private int getDelay(String[] strings) {
+        if (strings[DELAYED] !)
     }
 
     public float getMaxDelayedTime() {
