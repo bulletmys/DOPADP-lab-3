@@ -45,6 +45,9 @@ public class Spark {
 
         airportIdNamePairs.collectAsMap();
 
+        final Broadcast<Map<String, AirportData>> airportsBroadcasted =
+                sc.broadcast(stringAirportDataMap);
+
 
     }
 }
