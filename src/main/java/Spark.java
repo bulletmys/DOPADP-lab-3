@@ -30,7 +30,7 @@ public class Spark {
 
         FlightsParser flightsParser = new FlightsParser(flightsInfo);
 
-        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR") || !strings[18].isEmpty());
+        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR") && !strings[18].isEmpty());
 
         JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo
                 .mapToPair(i ->
@@ -41,7 +41,7 @@ public class Spark {
         JavaPairRDD<Tuple2<String, String>, FlightsInfo> flightsStat = data.reduceByKey(FlightsInfo::sum);
 
         FlightsParser airportsNamesParser = new FlightsParser(airportsNames);
-        JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code") || !strings[1].isEmpty());
+        JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code") && !strings[1].isEmpty());
 
         JavaPairRDD<Integer, String> airportIdNamePairs = parsedAirportsInfo
                 .mapToPair(strings ->
