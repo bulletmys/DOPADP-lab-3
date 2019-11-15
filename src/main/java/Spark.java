@@ -56,7 +56,7 @@ public class Spark {
                 + String.valueOf(x._2.getMaxDelayedTime())
                 + String.valueOf(x._2.getNumOfAll())
                 + String.valueOf(x._2.getNumOfDelayed())
-                +  String.valueOf(x._2.getNumOfCanceled()));
+                +  String.valueOf(x._2.getNumOfCanceled())).saveAsTextFile("KekLolTest");
         System.out.println("TEEEEST");
 
 
