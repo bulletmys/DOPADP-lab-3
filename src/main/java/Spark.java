@@ -36,7 +36,7 @@ public class Spark {
                                 new Tuple2<String, String>(
                                         getOriginAirportID(i), getDestAirportID(i)), new FlightsInfo(i)));
 
-        data.reduceByKey(FlightsInfo::sum);
+        JavaPairRDD<Tuple2<String, String>, FlightsInfo> flightsStat = data.reduceByKey(FlightsInfo::sum);
 
         FlightsParser airportsNamesParser = new FlightsParser(airportsNames);
         JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code"));
@@ -47,7 +47,8 @@ public class Spark {
 
         Map<Integer, String> airportIdNameMap = airportIdNamePairs.collectAsMap();
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(airportIdNameMap);
-        
+
+        flightsStat.map()
 
 
 
