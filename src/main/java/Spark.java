@@ -51,7 +51,9 @@ public class Spark {
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(airportIdNameMap);
 
 //        flightsStat.map( x ->  )
+        System.out.println("TEEEEST");
         flightsStat.foreach(x -> System.out.println(x.toString()));
+        System.out.println("TEEEEST");
 
 
     }
