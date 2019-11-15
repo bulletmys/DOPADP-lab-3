@@ -52,7 +52,11 @@ public class Spark {
 
 //        flightsStat.map( x ->  )
         System.out.println("TEEEEST");
-        flightsStat.foreach(x -> airportsBroadcasted.value().get(x._1._1) + airportsBroadcasted.value().get(x._1._2) + x._2.getMaxDelayedTime() + x._2.getNumOfAll()+ x._2.getNumOfDelayed() +  x._2.getNumOfCanceled());
+        flightsStat.foreach(x -> airportsBroadcasted.value().get(x._1._1) + " " + airportsBroadcasted.value().get(x._1._2) + " "
+                + String.valueOf(x._2.getMaxDelayedTime())
+                + String.valueOf(x._2.getNumOfAll())
+                + String.valueOf(x._2.getNumOfDelayed())
+                +  String.valueOf(x._2.getNumOfCanceled()));
         System.out.println("TEEEEST");
 
 
