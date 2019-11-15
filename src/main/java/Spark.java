@@ -10,6 +10,8 @@ import java.util.Map;
 public class Spark {
     private static final int ORIGIN_AIRPORT_ID = 11;
     private static final int DEST_AIRPORT_ID = 14;
+    private final int DELAYED = 18;
+    private final int CANCELLED = 19;
 
     private static String getOriginAirportID(String[] string) {
         return string[ORIGIN_AIRPORT_ID];
@@ -28,7 +30,7 @@ public class Spark {
 
         FlightsParser flightsParser = new FlightsParser(flightsInfo);
 
-        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR"));
+        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR") || !strings[18].isEmpty());
 
         JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo
                 .mapToPair(i ->
@@ -39,7 +41,7 @@ public class Spark {
         JavaPairRDD<Tuple2<String, String>, FlightsInfo> flightsStat = data.reduceByKey(FlightsInfo::sum);
 
         FlightsParser airportsNamesParser = new FlightsParser(airportsNames);
-        JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code"));
+        JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code") || !strings[1].isEmpty());
 
         JavaPairRDD<Integer, String> airportIdNamePairs = parsedAirportsInfo
                 .mapToPair(strings ->

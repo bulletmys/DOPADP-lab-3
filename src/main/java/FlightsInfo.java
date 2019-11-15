@@ -11,10 +11,12 @@ public class FlightsInfo implements Serializable {
     private int numOfAll;
 
     FlightsInfo(String[] strings) {
-        this.maxDelayedTime = Float.parseFloat(strings[DELAYED]);
-        this.numOfDelayed = maxDelayedTime > 0.0 ? 1 : 0;
-        this.numOfCanceled = Math.round(Float.parseFloat(strings[CANCELLED]));
-        this.numOfAll = 1;
+        if (!strings[DELAYED].isEmpty() && !strings[CANCELLED].isEmpty()) {
+            this.maxDelayedTime = Float.parseFloat(strings[DELAYED]);
+            this.numOfDelayed = maxDelayedTime > 0.0 ? 1 : 0;
+            this.numOfCanceled = Math.round(Float.parseFloat(strings[CANCELLED]));
+            this.numOfAll = 1;
+        }
     }
 
     private FlightsInfo(float maxDelayedTime, int numOfDelayed, int numOfCanceled, int numOfAll) {
