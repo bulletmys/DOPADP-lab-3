@@ -35,5 +35,12 @@ public class Spark {
 
         data.reduceByKey(FlightsInfo::sum);
 
+        FlightsParser airportsNamesParser = new FlightsParser(airportsNames);
+
+        JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings();
+
+        
+
+
     }
 }
