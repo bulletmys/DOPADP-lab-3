@@ -25,7 +25,7 @@ public class Spark {
 
         FlightsParser flightsParser = new FlightsParser(flightsInfo);
 
-        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings();
+        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("Code"));
 
         JavaPairRDD<Tuple2<String, String>, FlightsInfo> data = parsedFlightsInfo
                 .mapToPair(i ->
@@ -37,9 +37,9 @@ public class Spark {
 
         FlightsParser airportsNamesParser = new FlightsParser(airportsNames);
 
-        JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings();
+        JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code"));
 
-        
+
 
 
     }
