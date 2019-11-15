@@ -45,18 +45,11 @@ public class Spark {
                 .mapToPair(strings ->
                         new Tuple2<Integer, String>(Integer.parseInt(strings[0]), strings.length == 3 ? strings[2] : strings[1]));
 
-
-
-        
         Map<Integer, String> airportIdNameMap = airportIdNamePairs.collectAsMap();
-
-
-
-
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(airportIdNameMap);
 
 //        flightsStat.map( x ->  )
-
+        flightsStat.foreach(System.out::println);
 
 
     }
