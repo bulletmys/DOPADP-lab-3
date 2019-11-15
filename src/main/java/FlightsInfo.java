@@ -50,4 +50,8 @@ public class FlightsInfo implements Serializable {
         return numOfDelayed;
     }
 
+    @Override
+    public String toString() {
+        return "Max Delay Time: " + maxDelayedTime + " % Of Delayed: " + numOfAll/numOfDelayed
+    }
 }
