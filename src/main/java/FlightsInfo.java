@@ -17,7 +17,7 @@ public class FlightsInfo implements Serializable {
         this.numOfAll = 1;
     }
 
-    FlightsInfo(float maxDelayedTime, int numOfDelayed, int numOfCanceled, int numOfAll) {
+    private FlightsInfo(float maxDelayedTime, int numOfDelayed, int numOfCanceled, int numOfAll) {
         this.maxDelayedTime = maxDelayedTime;
         this.numOfDelayed = numOfDelayed;
         this.numOfCanceled = numOfCanceled;
@@ -27,7 +27,9 @@ public class FlightsInfo implements Serializable {
     public static FlightsInfo sum(FlightsInfo o1, FlightsInfo o2) {
         float maxDelayedTime = Math.max(o1.getMaxDelayedTime(), o2.getMaxDelayedTime());
         int numOfDelayed = o1.getNumOfDelayed() + o2.getNumOfDelayed();
-        FlightsInfo sumObject = new FlightsInfo()
+        int numOfCanceled = o1.getNumOfCanceled() + o2.getNumOfCanceled();
+        int numOfAll = o1.getNumOfAll() + o2.getNumOfAll();
+        return new FlightsInfo(maxDelayedTime, numOfDelayed, numOfCanceled, numOfAll);
     }
 
     public float getMaxDelayedTime() {

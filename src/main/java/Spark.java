@@ -33,7 +33,7 @@ public class Spark {
                                 new Tuple2<String, String>(
                                         getOriginAirportID(i), getDestAirportID(i)), new FlightsInfo(i)));
 
-        data.reduceByKey((x, y) -> x + y) //TODO сделать сложение и расчет процента опозданий
+        data.reduceByKey(FlightsInfo::sum);
 
     }
 }
