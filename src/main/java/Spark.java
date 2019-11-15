@@ -43,7 +43,7 @@ public class Spark {
                 .mapToPair(strings ->
                         new Tuple2<Integer, String>(Integer.parseInt(strings[0]), strings.length == 3 ? strings[2] : strings[1]));
 
-        airportIdNamePairs.
+        airportIdNamePairs.collectAsMap();
 
 
     }
