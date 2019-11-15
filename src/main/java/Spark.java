@@ -4,6 +4,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
+import java.util.Map;
+
 public class Spark {
     private static final int ORIGIN_AIRPORT_ID = 11;
     private static final int DEST_AIRPORT_ID = 14;
@@ -43,7 +45,7 @@ public class Spark {
                 .mapToPair(strings ->
                         new Tuple2<Integer, String>(Integer.parseInt(strings[0]), strings.length == 3 ? strings[2] : strings[1]));
 
-        MaairportIdNamePairs.collectAsMap();
+        Map<Integer, String> airportIdNameMap = airportIdNamePairs.collectAsMap();
 
         final Broadcast<Map<String, AirportData>> airportsBroadcasted =
                 sc.broadcast(stringAirportDataMap);
