@@ -52,6 +52,6 @@ public class FlightsInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "Max Delay Time: " + maxDelayedTime + " % Of Delayed: " + ((float) numOfAll / numOfDelayed * 100f) + " % Of Canceled: " + ((float) numOfAll / numOfCanceled * 100f);
+        return "Max Delay Time: " + maxDelayedTime + " Delayed % : " + ((float) numOfDelayed / numOfAll * 100f) + " Canceled % : " + ((float) numOfCanceled / numOfAll * 100f);
     }
 }
