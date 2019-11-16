@@ -51,9 +51,9 @@ public class Spark {
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(airportIdNameMap);
 
 //        flightsStat.map( x ->  )
-        System.out.println("TEEEEST");
+//        System.out.println("TEEEEST");
         flightsStat.map(x -> airportsBroadcasted.value().get(x._1._1) + " ---> " + airportsBroadcasted.value().get(x._1._2) + " #  " + x._2.toString()).saveAsTextFile("Two");
-        System.out.println("TEEEEST");
+//        System.out.println("TEEEEST");
 
 
     }
