@@ -10,7 +10,7 @@ import java.util.Map;
 public class SparkAdditional { //Требуется составить для каждого аэропорта кол-во отмененных рейсов по дням неделей
     private static final int ORIGIN_AIRPORT_ID = 11;
     private static final int DEST_AIRPORT_ID = 14;
-    private static final int DAY_OF_WEEK = 5;
+    private static final int DAY_OF_WEEK = 4;
     private static final int CANCELLED = 19;
 
     private static Integer getOriginAirportID(String[] string) {
