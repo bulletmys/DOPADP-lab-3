@@ -38,7 +38,6 @@ public class SparkAdditional { //Требуется составить для к
         JavaRDD<String> airportsNames = sc.textFile("L_AIRPORT_ID.csv");
 
         FlightsParser flightsParser = new FlightsParser(flightsInfo);
-
         JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR") && !strings[18].isEmpty());
 
         JavaPairRDD<Tuple2<Integer, Integer>, Integer> data = parsedFlightsInfo.mapToPair(i ->
@@ -46,8 +45,11 @@ public class SparkAdditional { //Требуется составить для к
                         new Tuple2<>(getOriginAirportID(i), getDayOfWeek(i)), getNumOfCanceled(i)));
 
         JavaPairRDD<Tuple2<Integer, Integer>, Integer> flightsCanceledCalc = data.reduceByKey(Integer::sum);
+        JavaPairRDD<Integer, FlightsAdditionalInfo> canceledStats = flightsCanceledCalc.mapToPair(i ->
+                new Tuple2<>(i._1._1,
+                        new FlightsAdditionalInfo(i._1._2, i._2)));
 
-        JavaPairRDD<Integer, FlightsAdditionalInfo> canceledStats = flightsCanceledCalc.mapToPair(i -> new Tuple2<>(i._1._1, new FlightsAdditionalInfo(i._1._2, i._2)));
+        JavaPairRDD<Integer, FlightsAdditionalInfo> canceledRes = canceledStats.reduceByKey(FlightsAdditionalInfo::sum);
 
         FlightsParser airportsNamesParser = new FlightsParser(airportsNames);
         JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code") && !strings[1].isEmpty());
@@ -59,9 +61,7 @@ public class SparkAdditional { //Требуется составить для к
         Map<Integer, String> airportIdNameMap = airportIdNamePairs.collectAsMap();
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(airportIdNameMap);
 
-        flightsStat.map(x -> airportsBroadcasted.value().get(x._1._1)
-                + " ---> " + airportsBroadcasted.value().get(x._1._2)
-                + " #  " + x._2.toString()).saveAsTextFile("Two");
+        canceledRes.map(x -> airportsBroadcasted.value().get(x._1) + " CancelledByDayOfWeek: " + x._2.toString()).saveAsTextFile("Two");
 
 
     }
