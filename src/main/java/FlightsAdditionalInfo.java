@@ -29,6 +29,7 @@ public class FlightsAdditionalInfo implements Serializable {
     public String toString() {
         return  "Mon - " + canceled[1] +
                 "Tue - " + canceled[2] +
+                "Wed - " + canceled[3] +
                 ""
 
 
