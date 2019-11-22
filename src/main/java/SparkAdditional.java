@@ -35,7 +35,7 @@ public class SparkAdditional { //Требуется составить для к
         JavaRDD<String> airportsNames = sc.textFile("L_AIRPORT_ID.csv");
 
         FlightsParser flightsParser = new FlightsParser(flightsInfo);
-        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR") && !strings[18].isEmpty());
+        JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR"));
 
         JavaPairRDD<Tuple2<Integer, Integer>, Integer> data = parsedFlightsInfo.mapToPair(i ->
                 new Tuple2<>(
