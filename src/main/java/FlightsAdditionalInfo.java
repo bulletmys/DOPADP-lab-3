@@ -21,11 +21,11 @@ public class FlightsAdditionalInfo implements Serializable {
     @Override
     public String toString() {
         return  "Mon - " + canceled[1] +
-                "Tue - " + canceled[2] +
-                "Wed - " + canceled[3] +
-                "Thu - " + canceled[4] +
-                "Fri - " + canceled[5] +
-                "Sat - " + canceled[6] +
-                "Sun - " + canceled[7];
+                " Tue - " + canceled[2] +
+                " Wed - " + canceled[3] +
+                " Thu - " + canceled[4] +
+                " Fri - " + canceled[5] +
+                " Sat - " + canceled[6] +
+                " Sun - " + canceled[7];
     }
 }
