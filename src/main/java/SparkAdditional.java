@@ -10,19 +10,24 @@ import java.util.Map;
 public class SparkAdditional { //Требуется составить для каждого аэропорта кол-во отмененных рейсов по дням неделей
     private static final int ORIGIN_AIRPORT_ID = 11;
     private static final int DEST_AIRPORT_ID = 14;
+    private static final int DAY_OF_WEEK = 5;
     private final int DELAYED = 18;
-    private final int CANCELLED = 19;
+    private static int CANCELLED = 19;
 
-    private static String getOriginAirportID(String[] string) {
-        return string[ORIGIN_AIRPORT_ID];
+    private static Integer getOriginAirportID(String[] string) {
+        return Integer.parseInt(string[ORIGIN_AIRPORT_ID]);
     }
 
     private static String getDestAirportID(String[] string) {
         return string[DEST_AIRPORT_ID];
     }
 
-    private static String getDayOfWeek(String[] string) {
-        return string[DEST_AIRPORT_ID];
+    private static Integer getDayOfWeek(String[] string) {
+        return Integer.parseInt(string[DAY_OF_WEEK]);
+    }
+
+    private static Integer getNumOfCanceled(String[] string) {
+        return Math.round(Float.parseFloat(string[CANCELLED]));
     }
 
     public static void main(String[] args) {
@@ -36,15 +41,13 @@ public class SparkAdditional { //Требуется составить для к
 
         JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR") && !strings[18].isEmpty());
 
-        JavaPairRDD<Tuple2<Integer, Integer>, FlightsInfo> data = parsedFlightsInfo
-                .mapToPair(i ->
-                        new Tuple2<Tuple2<Integer, Integer>, FlightsInfo>(
-                                new Tuple2<Integer, Integer>(
-                                        Integer.parseInt(getOriginAirportID(i)), Integer.parseInt(getDestAirportID(i))), new FlightsInfo(i)));
+        JavaPairRDD<Tuple2<Integer, Integer>, Integer> data = parsedFlightsInfo.mapToPair(i ->
+                new Tuple2<>(
+                        new Tuple2<>(getOriginAirportID(i), getDayOfWeek(i)), getNumOfCanceled(i)));
 
-        JavaPairRDD<Tuple2<Integer, Integer>, Integer> data2 = parsedFlightsInfo.mapToPair(i -> new Tuple2<>(getOriginAirportID(i), ))
+        JavaPairRDD<Tuple2<Integer, Integer>, Integer> flightsCanceledCalc = data.reduceByKey(Integer::sum);
 
-        JavaPairRDD<Tuple2<Integer, Integer>, FlightsInfo> flightsStat = data.reduceByKey(FlightsInfo::sum);
+        JavaPairRDD<Integer, FlightsAdditionalInfo> canceledStats = flightsCanceledCalc.mapToPair(i -> new Tuple2<>(i._1._1, new FlightsAdditionalInfo(i._1._2, i._2)));
 
         FlightsParser airportsNamesParser = new FlightsParser(airportsNames);
         JavaRDD<String[]> parsedAirportsInfo = airportsNamesParser.getStrings().filter(strings -> !strings[0].equals("Code") && !strings[1].isEmpty());

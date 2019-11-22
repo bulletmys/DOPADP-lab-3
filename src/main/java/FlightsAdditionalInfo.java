@@ -1,28 +1,12 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class FlightsAdditionalInfo implements Serializable {
 
-    private final int DELAYED = 18;
-    private final int CANCELLED = 19;
+    private int[] canceled = new int[7];
 
-    private int dayOfWeek;
-    private int numOfCanceled;
-    private int numOfAll;
-
-    FlightsAdditionalInfo(String[] strings) {
-        if (!strings[DELAYED].isEmpty() && !strings[CANCELLED].isEmpty()) {
-            this.maxDelayedTime = Float.parseFloat(strings[DELAYED]);
-            this.numOfDelayed = maxDelayedTime > 0.0 ? 1 : 0;
-            this.numOfCanceled = Math.round(Float.parseFloat(strings[CANCELLED]));
-            this.numOfAll = 1;
-        }
-    }
-
-    private FlightsAdditionalInfo(float maxDelayedTime, int numOfDelayed, int numOfCanceled, int numOfAll) {
-        this.maxDelayedTime = maxDelayedTime;
-        this.numOfDelayed = numOfDelayed;
-        this.numOfCanceled = numOfCanceled;
-        this.numOfAll = numOfAll;
+    FlightsAdditionalInfo(Integer dayOfWeek, Integer numOfCanceled) {
+        this.canceled[dayOfWeek] = numOfCanceled;
     }
 
     public static FlightsAdditionalInfo sum(FlightsInfo o1, FlightsInfo o2) {
@@ -33,24 +17,16 @@ public class FlightsAdditionalInfo implements Serializable {
         return new FlightsAdditionalInfo(maxDelayedTime, numOfDelayed, numOfCanceled, numOfAll);
     }
 
-    public float getMaxDelayedTime() {
-        return maxDelayedTime;
+
+
+    public int getNumOfCanceled(int dayOfWeek) {
+        if (dayOfWeek > 0)
+        return canceled[dayOfWeek];
     }
 
-    public int getNumOfAll() {
-        return numOfAll;
-    }
-
-    public int getNumOfCanceled() {
-        return numOfCanceled;
-    }
-
-    public int getNumOfDelayed() {
-        return numOfDelayed;
-    }
 
     @Override
     public String toString() {
-        return "Max Delay Time: " + maxDelayedTime + " Delayed % : " + ((float) numOfDelayed / numOfAll * 100f) + " Canceled % : " + ((float) numOfCanceled / numOfAll * 100f);
+        return "Day Of Week: " + dayOfWeek + " Canceled: " + numOfCanceled;
     }
 }
