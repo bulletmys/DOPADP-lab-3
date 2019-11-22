@@ -30,7 +30,8 @@ public class FlightsAdditionalInfo implements Serializable {
         return  "Mon - " + canceled[1] +
                 "Tue - " + canceled[2] +
                 "Wed - " + canceled[3] +
-                ""
+                "Thu - " + canceled[4] +
+                
 
 
     }
