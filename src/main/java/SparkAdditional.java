@@ -11,15 +11,10 @@ public class SparkAdditional { //Требуется составить для к
     private static final int ORIGIN_AIRPORT_ID = 11;
     private static final int DEST_AIRPORT_ID = 14;
     private static final int DAY_OF_WEEK = 5;
-    private final int DELAYED = 18;
-    private static int CANCELLED = 19;
+    private static final int CANCELLED = 19;
 
     private static Integer getOriginAirportID(String[] string) {
         return Integer.parseInt(string[ORIGIN_AIRPORT_ID]);
-    }
-
-    private static String getDestAirportID(String[] string) {
-        return string[DEST_AIRPORT_ID];
     }
 
     private static Integer getDayOfWeek(String[] string) {
