@@ -21,6 +21,10 @@ public class SparkAdditional { //Требуется составить для к
         return string[DEST_AIRPORT_ID];
     }
 
+    private static String getDayOfWeek(String[] string) {
+        return string[DEST_AIRPORT_ID];
+    }
+
     public static void main(String[] args) {
         SparkConf conf = new SparkConf();
         JavaSparkContext sc = new JavaSparkContext(conf);
@@ -38,7 +42,7 @@ public class SparkAdditional { //Требуется составить для к
                                 new Tuple2<Integer, Integer>(
                                         Integer.parseInt(getOriginAirportID(i)), Integer.parseInt(getDestAirportID(i))), new FlightsInfo(i)));
 
-        JavaPairRDD<Tuple2<Integer, Integer>, >
+        JavaPairRDD<Tuple2<Integer, Integer>, Integer> data2 = parsedFlightsInfo.mapToPair(i -> new Tuple2<>(getOriginAirportID(i), ))
 
         JavaPairRDD<Tuple2<Integer, Integer>, FlightsInfo> flightsStat = data.reduceByKey(FlightsInfo::sum);
 
