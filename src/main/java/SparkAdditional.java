@@ -12,6 +12,7 @@ public class SparkAdditional { //Требуется составить для к
     private static final int DEST_AIRPORT_ID = 14;
     private static final int DAY_OF_WEEK = 4;
     private static final int CANCELLED = 19;
+    private static final int CANCELLED_ALT = 14;
 
     private static Integer getOriginAirportID(String[] string) {
         return Integer.parseInt(string[ORIGIN_AIRPORT_ID]);
@@ -22,7 +23,8 @@ public class SparkAdditional { //Требуется составить для к
     }
 
     private static Integer getNumOfCanceled(String[] string) {
-        return Math.round(Float.parseFloat(string[CANCELLED]));
+        int res = Math.round(Float.parseFloat(string[CANCELLED]));
+        return res == 0 ? res : Math.round(Float.parseFloat(string[CANCELLED_ALT]));
     }
 
     public static void main(String[] args) {
