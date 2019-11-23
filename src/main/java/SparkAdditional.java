@@ -22,7 +22,7 @@ public class SparkAdditional { //Требуется составить для к
     }
 
     private static Integer getNumOfCanceled(String[] string) {
-        System.out.println(stringstring[CANCELLED]);
+        System.out.println(string[5] + " ---------------------------- " + string[CANCELLED]);
         return Math.round(Float.parseFloat(string[CANCELLED]));
     }
 
