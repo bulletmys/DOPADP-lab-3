@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class SparkAdditional { //Требуется составить для каждого аэропорта кол-во отмененных рейсов по дням неделей
     private static final int ORIGIN_AIRPORT_ID = 11;
-    private static final int DEST_AIRPORT_ID = 14;
     private static final int DAY_OF_WEEK = 4;
     private static final int CANCELLED = 19;
 
@@ -35,9 +34,9 @@ public class SparkAdditional { //Требуется составить для к
         FlightsParser flightsParser = new FlightsParser(flightsInfo);
         JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> strings[21].equals(""));
 
-        System.out.println(parsedFlightsInfo.collect().toString());
-        System.out.println(parsedFlightsInfo.collect().get(1)[20]);
-        System.out.println(parsedFlightsInfo.collect().get(9)[20]);
+//        System.out.println(parsedFlightsInfo.collect().toString());
+//        System.out.println(parsedFlightsInfo.collect().get(1)[20]);
+//        System.out.println(parsedFlightsInfo.collect().get(9)[20]);
 
         JavaPairRDD<Tuple2<Integer, Integer>, Integer> data = parsedFlightsInfo.mapToPair(i ->
                 new Tuple2<>(
