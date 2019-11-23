@@ -36,7 +36,7 @@ public class SparkAdditional { //Требуется составить для к
         JavaRDD<String[]> parsedFlightsInfo = flightsParser.getStrings().filter(strings -> !strings[0].equals("YEAR"));
 
         System.out.println(flightsInfo.collect().get(1));
-        System.out.println(flightsInfo.collect().get(1));
+        System.out.println(flightsInfo.collect().get(8));
 
         JavaPairRDD<Tuple2<Integer, Integer>, Integer> data = parsedFlightsInfo.mapToPair(i ->
                 new Tuple2<>(
