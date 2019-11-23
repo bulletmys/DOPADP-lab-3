@@ -24,7 +24,7 @@ public class SparkAdditional { //Требуется составить для к
 
     private static Integer getNumOfCanceled(String[] string) {
         int res = Math.round(Float.parseFloat(string[CANCELLED]));
-        return res == 0 ? res : Math.round(Float.parseFloat(string[CANCELLED_ALT]));
+        return res == 0 ? 0 : Math.round(Float.parseFloat(string[CANCELLED_ALT]));
     }
 
     public static void main(String[] args) {
